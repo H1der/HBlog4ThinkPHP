@@ -4,7 +4,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 
-class Entry extends Controller
+class Entry extends Common
 {
     public function index()
     {

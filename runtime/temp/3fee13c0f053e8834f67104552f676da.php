@@ -1,9 +1,9 @@
-<?php /*a:1:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518099692;}*/ ?>
+<?php /*a:1:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518163944;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>后盾网武斌博客网后台管理系统</title>
+    <title>博客网后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="/static/admin/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/admin/css/site.css" rel="stylesheet">
@@ -149,7 +149,7 @@
                 </tr>
                 <tr>
                     <td>版本号</td>
-                    <td colspan="5">1.0</td>
+                    <td colspan="5">5.1</td>
                 </tr>
                 <tr>
                     <td>开发者</td>
