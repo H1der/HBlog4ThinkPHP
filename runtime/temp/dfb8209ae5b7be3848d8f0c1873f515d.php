@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518257848;}*/ ?>
+<?php /*a:2:{s:67:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\pass.html";i:1518259470;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518258084;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +56,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="changePass.html">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="">退出</a></li>
                         </ul>
@@ -165,33 +165,43 @@
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
             
-<table class="table table-hover">
-    <tbody>
-    <tr>
-        <th class="active" colspan="10">温馨提示</th>
-    </tr>
-    <tr>
-        <td colspan="10">
-            个人博客：<a href="http://www.2hider.com" target="_blank">www.2hider.com</a>
-        </td>
-    </tr>
-    <tr>
-        <th class="active" colspan="10">系统信息</th>
-    </tr>
-    <tr>
-        <td>核心框架</td>
-        <td colspan="5">Thinkphp</td>
-    </tr>
-    <tr>
-        <td>版本号</td>
-        <td colspan="5">5.1</td>
-    </tr>
-    <tr>
-        <td>开发者</td>
-        <td colspan="5">Hider</td>
-    </tr>
-    </tbody>
-</table>
+<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+    <li>
+        <a href="javascript:;"><i class="fa fa-cogs"></i>
+            密码管理</a>
+    </li>
+    <li class="active">
+        <a href="javascript:;">修改密码</a>
+    </li>
+</ol>
+<form class="form-horizontal" id="form" action="" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改密码</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">原始密码</label>
+                <div class="col-sm-9">
+                    <input required type="text" name="admin_password" class="form-control" placeholder="请填写原始密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">新密码</label>
+                <div class="col-sm-9">
+                    <input required type="text" name="new_password" class="form-control" placeholder="请填写新密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">确认密码</label>
+                <div class="col-sm-9">
+                    <input required type="text" name="confirm_password" class="form-control" placeholder="请填写确认密码">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">确定</button>
+</form>
 
         </div>
     </div>
