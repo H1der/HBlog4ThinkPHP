@@ -1,3 +1,4 @@
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518342653;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,11 +52,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="">退出</a></li>
                         </ul>
@@ -81,7 +82,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-certificate" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -163,7 +164,35 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+            
+<table class="table table-hover">
+    <tbody>
+    <tr>
+        <th class="active" colspan="10">温馨提示</th>
+    </tr>
+    <tr>
+        <td colspan="10">
+            个人博客：<a href="http://www.2hider.com" target="_blank">www.2hider.com</a>
+        </td>
+    </tr>
+    <tr>
+        <th class="active" colspan="10">系统信息</th>
+    </tr>
+    <tr>
+        <td>核心框架</td>
+        <td colspan="5">Thinkphp</td>
+    </tr>
+    <tr>
+        <td>版本号</td>
+        <td colspan="5">5.1</td>
+    </tr>
+    <tr>
+        <td>开发者</td>
+        <td colspan="5">Hider</td>
+    </tr>
+    </tbody>
+</table>
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->
