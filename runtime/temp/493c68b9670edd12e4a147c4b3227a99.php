@@ -1,4 +1,4 @@
-<?php /*a:2:{s:71:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\category\index.html";i:1518368056;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518342653;}*/ ?>
+<?php /*a:2:{s:72:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\category\addson.html";i:1518366542;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518342653;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -171,50 +171,45 @@
             栏目管理</a>
     </li>
     <li class="active">
-        <a href="">栏目列表</a>
+        <a href="">栏目添加</a>
     </li>
+
 </ol>
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="">栏目列表</a></li>
-    <li><a href="<?php echo url('store'); ?>">添加栏目</a></li>
+    <li><a href="<?php echo url('index'); ?>">栏目列表</a></li>
+    <li class="active"><a href="">添加子集栏目</a></li>
 </ul>
-<form action="" method="post">
+<form class="form-horizontal" id="form" action="" method="post">
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">栏目管理</h3>
+        </div>
         <div class="panel-body">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th width="80">编号</th>
-                    <th>栏目名称</th>
-                    <th width="200">操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if(is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if( count($field)==0 ) : echo "" ;else: foreach($field as $key=>$vo): ?>
-                <tr>
-                    <td><?php echo htmlentities($vo['cate_id']); ?></td>
-                    <td><?php echo htmlentities($vo['_cate_name']); ?></td>
-                    <td>
-                        <div class="btn-group">
-                            <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span
-                                    class="caret"></span></button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="<?php echo url('addSon',['cate_id'=>$vo['cate_id']]); ?>">添加子类</a></li>
-                                <li><a href="">编辑</a></li>
-                                <li class="divider"></li>
-                                <li><a href="javascript:;">删除</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-                </tbody>
-            </table>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">栏目名称</label>
+                <div class="col-sm-9">
+                    <input type="text" name="cate_name" class="form-control" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">所属栏目</label>
+                <div class="col-sm-9">
+                    <select class="js-example-basic-single form-control" name="cate_pid">
+                        <option value="<?php echo htmlentities($data['cate_id']); ?>"><?php echo htmlentities($data['cate_name']); ?></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">栏目排序</label>
+                <div class="col-sm-9">
+                    <input type="number" name="cate_sort" class="form-control" placeholder="">
+                </div>
+            </div>
         </div>
     </div>
+    <button class="btn btn-primary" type="submit">确定</button>
 </form>
-<div class="pagination pagination-sm pull-right">
-</div>
 
         </div>
     </div>
