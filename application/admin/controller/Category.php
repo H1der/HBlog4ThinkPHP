@@ -27,7 +27,7 @@ class Category extends Controller
 
         if (request()->isPost()) {
             $res = $this->db->store(input('post.'));
-            halt($res);
+//            halt($res);
 
 //            if ($res['valid'])
 //            {
@@ -37,6 +37,22 @@ class Category extends Controller
 //            {
 //                $this->error($res['msg']);exit;
 //            }
+            $validate = new \app\admin\validate\Category;
+//            $result = $this->validate($res, 'app\index\validate\User.edit');
+
+            if (!$validate->check($res)) {
+//            return ['valid' => 0, 'msg' => $this->getError()];
+                $this->error($validate->getError());
+                exit;
+            } else {
+                $cate = new \app\common\model\Category([
+                    'cate_name' => $res['cate_name'],
+                    'cate_pid' => $res['cate_pid'],
+                    'cate_sort' => $res['cate_sort']
+                ]);
+                $cate->save();
+                $this->success('添加成功', 'index');
+            }
 
         }
         return $this->fetch();
