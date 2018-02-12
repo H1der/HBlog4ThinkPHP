@@ -100,6 +100,47 @@ class Category extends Controller
 //        halt($cate_id);
         return $this->fetch();
 
+    }
 
+    public function edit()
+    {
+        if (request()->isPost()) {
+            $validate = new \app\admin\validate\Category;
+            $res = $this->db->edit(input('post.'));
+//            $result = $this->validate(true)->save($res, [$this->pk => $res['cate_id']]);
+            if (!$validate->check($res)) {
+//            return ['valid' => 0, 'msg' => $this->getError()];
+                $this->error($validate->getError());
+                exit;
+            } else {
+                $cate = new \app\common\model\Category();
+                $cate->save([
+                    'cate_name' => $res['cate_name'],
+                    'cate_pid' => $res['cate_pid'],
+                    'cate_sort' => $res['cate_sort']
+                ], ['cate_id' => $res['cate_id']]);
+                $this->success('修改成功', 'index');
+            }
+        }
+        $cate_id = input('param.cate_id');
+//        halt($cate_id);
+        $oldData = $this->db->find($cate_id);
+        $this->assign('oldData', $oldData);
+        $cateData = $this->db->getCateDate($cate_id);
+//        halt($cateData);
+        $this->assign('cateData', $cateData);
+        return $this->fetch();
+    }
+
+    public function del()
+    {
+        $res = $this->db->del(input('get.cate_id'));
+        if ($res['valid']) {
+            $this->success($res['msg'], 'index');
+            exit;
+        } else {
+            $this->error($res['msg']);
+            exit;
+        }
     }
 }

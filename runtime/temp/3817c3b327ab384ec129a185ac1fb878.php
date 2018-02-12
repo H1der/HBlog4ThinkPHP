@@ -1,4 +1,4 @@
-<?php /*a:2:{s:71:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\category\index.html";i:1518449688;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518449373;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\category\edit.html";i:1518448168;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518342653;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +10,9 @@
     <link href="/static/admin/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="/static/admin/js/jquery.min.js"></script>
     <script src="/static/admin/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
-    <!--<script src="resource/hdjs/app/util.js"></script>-->
-    <!--<script src="resource/hdjs/require.js"></script>-->
-    <!--<script src="resource/hdjs/app/config.js"></script>-->
+    <script src="resource/hdjs/app/util.js"></script>
+    <script src="resource/hdjs/require.js"></script>
+    <script src="resource/hdjs/app/config.js"></script>
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -43,7 +43,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i
-                                    class="fa fa-w fa-file-code-o"></i>
+                                        class="fa fa-w fa-file-code-o"></i>
                                 首页</a>
                         </li>
                     </ul>
@@ -164,65 +164,59 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            
-<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
-    <li>
-        <a href=""><i class="fa fa-cogs"></i>
-            栏目管理</a>
-    </li>
-    <li class="active">
-        <a href="">栏目列表</a>
-    </li>
-</ol>
-<ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="">栏目列表</a></li>
-    <li><a href="<?php echo url('store'); ?>">添加栏目</a></li>
-</ul>
-<form action="" method="post">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th width="80">编号</th>
-                    <th>栏目名称</th>
-                    <th width="200">操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if(is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if( count($field)==0 ) : echo "" ;else: foreach($field as $key=>$vo): ?>
-                <tr>
-                    <td><?php echo htmlentities($vo['cate_id']); ?></td>
-                    <td><?php echo htmlentities($vo['_cate_name']); ?></td>
-                    <td>
-                        <div class="btn-group">
-                            <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span
-                                    class="caret"></span></button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="<?php echo url('addSon',['cate_id'=>$vo['cate_id']]); ?>">添加子类</a></li>
-                                <li><a href="<?php echo url('edit', ['cate_id' => $vo['cate_id']]); ?>">编辑</a></li>
-                                <li class="divider"></li>
-                                <li><a href="javascript:;"
-                                       onclick="del(<?php echo htmlentities($vo['cate_id']); ?>)">删除</a></li>
-                            </ul>
+
+            <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+                <li>
+                    <a href=""><i class="fa fa-cogs"></i>
+                        栏目管理</a>
+                </li>
+                <li class="active">
+                    <a href="">栏目编辑</a>
+                </li>
+
+            </ol>
+            <ul class="nav nav-tabs" role="tablist">
+                <li><a href="<?php echo url('index'); ?>">栏目列表</a></li>
+                <li class="active"><a href="">栏目编辑</a></li>
+            </ul>
+            <form class="form-horizontal" id="form" action="" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">栏目管理</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">栏目名称</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="cate_name" class="form-control" placeholder=""
+                                       value="<?php echo htmlentities($oldData['cate_name']); ?>">
+                            </div>
                         </div>
-                    </td>
-                </tr>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</form>
-<div class="pagination pagination-sm pull-right">
-</div>
-            <script>
-                function del(cate_id) {
-                    if (confirm("确定删除吗?")) {
-                        location.href = "<?php echo url('del'); ?>" + '?cate_id=' + cate_id;
-                    }
-                }
-            </script>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">所属栏目</label>
+                            <div class="col-sm-9">
+                                <select class="js-example-basic-single form-control" name="cate_pid">
+                                    <option value="0">顶级栏目</option>
+                                    <?php if (is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if (count($cateData) == 0) : echo ""; else: foreach ($cateData as $key => $vo): ?>
+                                        <option <?php if ($oldData['cate_pid'] == $vo['cate_id']): ?> selected <?php endif; ?>
+                                                value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
+                                    <?php endforeach; endif; else: echo "";endif; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">栏目排序</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="cate_sort" class="form-control" placeholder=""
+                                       value="<?php echo htmlentities($oldData['cate_sort']); ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="cate_id" value="<?php echo input('param.cate_id'); ?>">
+                <button class="btn btn-primary" type="submit">确定</button>
+            </form>
 
         </div>
     </div>
