@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518527101;}*/ ?>
+<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\store.html";i:1518538234;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518527101;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +43,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i
-                                    class="fa fa-w fa-file-code-o"></i>
+                                        class="fa fa-w fa-file-code-o"></i>
                                 首页</a>
                         </li>
                     </ul>
@@ -164,34 +164,42 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            
-<table class="table table-hover">
-    <tbody>
-    <tr>
-        <th class="active" colspan="10">温馨提示</th>
-    </tr>
-    <tr>
-        <td colspan="10">
-            个人博客：<a href="http://www.2hider.com" target="_blank">www.2hider.com</a>
-        </td>
-    </tr>
-    <tr>
-        <th class="active" colspan="10">系统信息</th>
-    </tr>
-    <tr>
-        <td>核心框架</td>
-        <td colspan="5">Thinkphp</td>
-    </tr>
-    <tr>
-        <td>版本号</td>
-        <td colspan="5">5.1</td>
-    </tr>
-    <tr>
-        <td>开发者</td>
-        <td colspan="5">Hider</td>
-    </tr>
-    </tbody>
-</table>
+
+            <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+                <li>
+                    <a href=""><i class="fa fa-cogs"></i>
+                        标签管理</a>
+                </li>
+                <li class="active">
+                    <a href="">标签添加</a>
+                </li>
+            </ol>
+            <ul class="nav nav-tabs" role="tablist">
+                <li><a href="<?php echo url('index'); ?>">标签管理</a></li>
+                <?php if (input('param.tag_id')): ?>
+                    <li class="active"><a href="">标签编辑</a></li>
+                <?php else: ?>
+                    <li class="active"><a href="">标签添加</a></li>
+                <?php endif; ?>
+            </ul>
+            <form class="form-horizontal" id="form" action="" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">标签管理</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">标签名称</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="tag_name" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="tag_id" value="<?php echo input('param.tag_id'); ?>">
+                <button class="btn btn-primary" type="submit">确定</button>
+            </form>
 
         </div>
     </div>

@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518527101;}*/ ?>
+<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518527101;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +43,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i
-                                    class="fa fa-w fa-file-code-o"></i>
+                                        class="fa fa-w fa-file-code-o"></i>
                                 首页</a>
                         </li>
                     </ul>
@@ -164,34 +164,69 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            
-<table class="table table-hover">
-    <tbody>
-    <tr>
-        <th class="active" colspan="10">温馨提示</th>
-    </tr>
-    <tr>
-        <td colspan="10">
-            个人博客：<a href="http://www.2hider.com" target="_blank">www.2hider.com</a>
-        </td>
-    </tr>
-    <tr>
-        <th class="active" colspan="10">系统信息</th>
-    </tr>
-    <tr>
-        <td>核心框架</td>
-        <td colspan="5">Thinkphp</td>
-    </tr>
-    <tr>
-        <td>版本号</td>
-        <td colspan="5">5.1</td>
-    </tr>
-    <tr>
-        <td>开发者</td>
-        <td colspan="5">Hider</td>
-    </tr>
-    </tbody>
-</table>
+
+            <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+                <li>
+                    <a href=""><i class="fa fa-cogs"></i>
+                        标签管理</a>
+                </li>
+                <li class="active">
+                    <a href="">标签展示</a>
+                </li>
+            </ol>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="">标签管理</a></li>
+                <li><a href="<?php echo url('store'); ?>">添加标签</a></li>
+            </ul>
+            <form action="" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th width="80">编号</th>
+                                <th>标签名</th>
+                                <th width="200">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if (is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if (count($field) == 0) : echo ""; else: foreach ($field as $key => $vo): ?>
+                                <tr>
+                                    <td><?php echo htmlentities($vo['tag_id']); ?></td>
+                                    <td><?php echo htmlentities($vo['tag_name']); ?></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button data-toggle="dropdown"
+                                                    class="btn btn-primary btn-xs dropdown-toggle">操作 <span
+                                                        class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>
+                                                    <a href="<?php echo url('edit', ['tag_id' => $vo['tag_id']]); ?>">编辑</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a href="javascript:;"
+                                                       onclick="del(<?php echo htmlentities($vo['tag_id']); ?>)">删除</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; endif; else: echo "";endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+            <div class="pagination pagination-sm pull-right">
+                <?php echo $field; ?>
+            </div>
+            <script>
+                function del(tag_id) {
+                    if (confirm("确定删除吗?")) {
+                        location.href = "<?php echo url('del'); ?>" + '?tag_id=' + tag_id;
+                    }
+                }
+            </script>
 
         </div>
     </div>
