@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518689444;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1518689983;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518690205;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +43,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i
-                                    class="fa fa-w fa-file-code-o"></i>
+                                        class="fa fa-w fa-file-code-o"></i>
                                 首页</a>
                         </li>
                     </ul>
@@ -121,7 +121,7 @@
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -164,34 +164,64 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            
-<table class="table table-hover">
-    <tbody>
-    <tr>
-        <th class="active" colspan="10">温馨提示</th>
-    </tr>
-    <tr>
-        <td colspan="10">
-            个人博客：<a href="http://www.2hider.com" target="_blank">www.2hider.com</a>
-        </td>
-    </tr>
-    <tr>
-        <th class="active" colspan="10">系统信息</th>
-    </tr>
-    <tr>
-        <td>核心框架</td>
-        <td colspan="5">Thinkphp</td>
-    </tr>
-    <tr>
-        <td>版本号</td>
-        <td colspan="5">5.1</td>
-    </tr>
-    <tr>
-        <td>开发者</td>
-        <td colspan="5">Hider</td>
-    </tr>
-    </tbody>
-</table>
+
+            <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+                <li>
+                    <a href=""><i class="fa fa-cogs"></i>
+                        文章管理</a>
+                </li>
+                <li class="active">
+                    <a href="">文章添加</a>
+                </li>
+            </ol>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#tab1">文章管理</a></li>
+                <li><a href="<?php echo url('store'); ?>">文章添加</a></li>
+            </ul>
+            <form action="" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th width="5%">编号</th>
+                                <th>文章名称</th>
+                                <th width="5%">排序</th>
+                                <th>所属分类</th>
+                                <th>添加时间</th>
+                                <th width="200">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>编号</td>
+                                <td>标题</td>
+                                <td>
+                                    <input type="text" class="form-control">
+                                </td>
+                                <td>所属分类</td>
+                                <td>1990-10-1</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作
+                                            <span
+                                                    class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="">编辑</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="">删除到回收站</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+            <div class="pagination pagination-sm pull-right">
+
+            </div>
 
         </div>
     </div>
@@ -203,7 +233,7 @@
     <a href="http://www.2hider.com">个人博客</a>
     <a href="http://www.2hider.com">个人博客</a>
     <br>
-    Powered by hdphp v2.0 © 2018-2022 www.2hider.com
+    Powered by HBlog v2.0 © 2018-2022 www.2hider.com
 </div>
 </body>
 </html>

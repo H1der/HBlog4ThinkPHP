@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518689444;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\store.html";i:1518695427;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518690205;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +43,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i
-                                    class="fa fa-w fa-file-code-o"></i>
+                                        class="fa fa-w fa-file-code-o"></i>
                                 首页</a>
                         </li>
                     </ul>
@@ -121,7 +121,7 @@
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -164,34 +164,86 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            
-<table class="table table-hover">
-    <tbody>
-    <tr>
-        <th class="active" colspan="10">温馨提示</th>
-    </tr>
-    <tr>
-        <td colspan="10">
-            个人博客：<a href="http://www.2hider.com" target="_blank">www.2hider.com</a>
-        </td>
-    </tr>
-    <tr>
-        <th class="active" colspan="10">系统信息</th>
-    </tr>
-    <tr>
-        <td>核心框架</td>
-        <td colspan="5">Thinkphp</td>
-    </tr>
-    <tr>
-        <td>版本号</td>
-        <td colspan="5">5.1</td>
-    </tr>
-    <tr>
-        <td>开发者</td>
-        <td colspan="5">Hider</td>
-    </tr>
-    </tbody>
-</table>
+
+            <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+                <li>
+                    <a href=""><i class="fa fa-cogs"></i>
+                        文章管理</a>
+                </li>
+                <li class="active">
+                    <a href="">文章添加</a>
+                </li>
+            </ol>
+            <ul class="nav nav-tabs" role="tablist">
+                <li><a href="<?php echo url('index'); ?>">文章管理</a></li>
+                <li class="active"><a href="">文章添加</a></li>
+            </ul>
+            <form class="form-horizontal" id="form" action="" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">文章管理</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章标题</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="title" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章作者</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="author" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">所属分类</label>
+                            <div class="col-sm-9">
+                                <select class="js-example-basic-single form-control" name="category_cid">
+                                    <option value="0">请选择分类</option>
+                                    <?php if (is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if (count($cateData) == 0) : echo ""; else: foreach ($cateData as $key => $vo): ?>
+                                        <option value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
+                                    <?php endforeach; endif; else: echo "";endif; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">标签</label>
+                            <div class="col-sm-9">
+                                <?php if (is_array($tagData) || $tagData instanceof \think\Collection || $tagData instanceof \think\Paginator): if (count($tagData) == 0) : echo ""; else: foreach ($tagData as $key => $vo): ?>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name=""
+                                               value="<?php echo htmlentities($vo['tag_id']); ?>"> <?php echo htmlentities($vo['tag_name']); ?>
+                                    </label>
+                                <?php endforeach; endif; else: echo "";endif; ?>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                        <!--<label for="" class="col-sm-2 control-label">缩略图</label>-->
+                        <!--<div class="col-sm-9">-->
+                        <!--<div class="input-group">-->
+                        <!--<div class="input-group-btn">-->
+                        <!--<input type="file" class="btn btn-default" name="">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章摘要</label>
+                            <div class="col-sm-9">
+                                <textarea type="text" name="digest" class="form-control" placeholder="文章摘要"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章内容</label>
+                            <div class="col-sm-9">
+                                <textarea type="text" name="content" class="form-control" placeholder="文章摘要"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">确定</button>
+            </form>
 
         </div>
     </div>
@@ -203,7 +255,7 @@
     <a href="http://www.2hider.com">个人博客</a>
     <a href="http://www.2hider.com">个人博客</a>
     <br>
-    Powered by hdphp v2.0 © 2018-2022 www.2hider.com
+    Powered by HBlog v2.0 © 2018-2022 www.2hider.com
 </div>
 </body>
 </html>

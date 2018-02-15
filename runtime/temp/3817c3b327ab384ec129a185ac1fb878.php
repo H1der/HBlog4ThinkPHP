@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\category\edit.html";i:1518448168;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518342653;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\category\edit.html";i:1518451274;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518690205;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +10,9 @@
     <link href="/static/admin/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="/static/admin/js/jquery.min.js"></script>
     <script src="/static/admin/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
-    <script src="resource/hdjs/app/util.js"></script>
-    <script src="resource/hdjs/require.js"></script>
-    <script src="resource/hdjs/app/config.js"></script>
+    <!--<script src="resource/hdjs/app/util.js"></script>-->
+    <!--<script src="resource/hdjs/require.js"></script>-->
+    <!--<script src="resource/hdjs/app/config.js"></script>-->
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -99,7 +99,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample2">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/tag/index'); ?>" class="list-group-item">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         标签列表
@@ -116,12 +116,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample3">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
                         <i class="fa fa-list" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -198,8 +198,8 @@
                                 <select class="js-example-basic-single form-control" name="cate_pid">
                                     <option value="0">顶级栏目</option>
                                     <?php if (is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if (count($cateData) == 0) : echo ""; else: foreach ($cateData as $key => $vo): ?>
-                                        <option <?php if ($oldData['cate_pid'] == $vo['cate_id']): ?> selected <?php endif; ?>
-                                                value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
+                                        <option {if condition="$oldData['cate_pid']==$vo['cate_id']" } selected {
+                                        /if} value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
                                     <?php endforeach; endif; else: echo "";endif; ?>
                                 </select>
                             </div>
@@ -228,7 +228,7 @@
     <a href="http://www.2hider.com">个人博客</a>
     <a href="http://www.2hider.com">个人博客</a>
     <br>
-    Powered by hdphp v2.0 © 2018-2022 www.2hider.com
+    Powered by HBlog v2.0 © 2018-2022 www.2hider.com
 </div>
 </body>
 </html>

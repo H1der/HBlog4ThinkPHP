@@ -1,4 +1,4 @@
-<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518527101;}*/ ?>
+<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518690205;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,12 +116,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample3">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
                         <i class="fa fa-list" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -238,7 +238,7 @@
     <a href="http://www.2hider.com">个人博客</a>
     <a href="http://www.2hider.com">个人博客</a>
     <br>
-    Powered by hdphp v2.0 © 2018-2022 www.2hider.com
+    Powered by HBlog v2.0 © 2018-2022 www.2hider.com
 </div>
 </body>
 </html>
