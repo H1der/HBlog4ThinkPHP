@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\store.html";i:1518869651;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518794281;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\store.html";i:1518874666;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518874602;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
     <link href="/static/admin/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/admin/css/site.css" rel="stylesheet">
     <link href="/static/admin/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/wangEditor.min.css">
     <script src="/static/admin/js/jquery.min.js"></script>
     <script src="/static/admin/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
     <!--<script src="resource/hdjs/app/util.js"></script>-->
@@ -243,21 +244,16 @@
                         <!--</div>-->
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">文章内容</label>
-                            <div class="col-sm-9" id="content" name="arc_content">
+                            <div class="col-sm-9" id="content">
                                 <!--<textarea type="text" name="content" class="form-control" placeholder=""></textarea>-->
                             </div>
+                            <textarea hidden id="arc_content" name="arc_content"
+                                      style="width:100%; height:200px;"></textarea>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit">确定</button>
+                <button class="btn btn-primary" type="submit" id="submit">确定</button>
             </form>
-
-            <script type="text/javascript">
-                var E = window.wangEditor
-                var editor = new E('#content')
-                // 或者 var editor = new E( document.getElementById('editor') )
-                editor.create()
-            </script>
 
         </div>
     </div>
@@ -276,7 +272,15 @@
 <script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor
+
     var editor = new E('#content')
+    var $arc_content = $('#arc_content')
     // 或者 var editor = new E( document.getElementById('editor') )
+    editor.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        $arc_content.val(html)
+    }
     editor.create()
+    // 初始化 textarea 的值
+    $arc_content.val(editor.txt.html())
 </script>

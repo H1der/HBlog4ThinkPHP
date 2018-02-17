@@ -76,19 +76,13 @@
             <!--</div>-->
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">文章内容</label>
-                <div class="col-sm-9" id="content" name="arc_content">
+                <div class="col-sm-9" id="content">
                     <!--<textarea type="text" name="content" class="form-control" placeholder=""></textarea>-->
                 </div>
+                <textarea hidden id="arc_content" name="arc_content" style="width:100%; height:200px;"></textarea>
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn btn-primary" type="submit" id="submit">确定</button>
 </form>
-
-<script type="text/javascript">
-    var E = window.wangEditor
-    var editor = new E('#content')
-    // 或者 var editor = new E( document.getElementById('editor') )
-    editor.create()
-</script>
 {/block}

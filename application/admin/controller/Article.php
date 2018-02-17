@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\common\model\ArcTag;
 use think\Controller;
 
 class Article extends Controller
@@ -30,8 +31,43 @@ class Article extends Controller
      */
     public function store()
     {
-        if (request()->isPost) {
+        if (request()->isPost()) {
+
             $res = $this->db->store(input('post.'));
+//            halt($res);
+            if (!isset($res['tag'])) {
+                return $this->error('请选择文章标签');
+            }
+            $validate = new \app\admin\validate\Article();
+
+            if (!$validate->check($res)) {
+                $this->error($validate->getError());
+                exit;
+            } else {
+                $arc = new \app\common\model\Article([
+                    'arc_title' => $res['arc_title'],
+                    'arc_author' => $res['arc_author'],
+                    'arc_sort' => $res['arc_sort'],
+                    'cate_id' => $res['cate_id'],
+                    'arc_content' => $res['arc_content'],
+                ]);
+                $arc->allowField(true)->save();
+                foreach ($res['tag'] as $v) {
+//                    $arcTagData =[
+//                        'arc_id'=>$arc->arc_id,
+//                        'tag_id'=>$v
+//                    ];
+//                    (new ArcTag())->save($arcTagData);
+                    $arctag = new ArcTag([
+                        'arc_id' => $arc->arc_id,
+                        'tag_id' => $v
+                    ]);
+                    $arctag->save();
+                }
+//                echo $arc->arc_id;
+//                exit;
+                $this->success('添加成功', 'index');
+            }
         }
         //获取分类数据
         $cateData = (new \app\common\model\Category())->getAll();
