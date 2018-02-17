@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518689444;}*/ ?>
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518794281;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,7 @@
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
     <script>
         if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -121,7 +122,7 @@
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -203,7 +204,14 @@
     <a href="http://www.2hider.com">个人博客</a>
     <a href="http://www.2hider.com">个人博客</a>
     <br>
-    Powered by hdphp v2.0 © 2018-2022 www.2hider.com
+    Powered by HBlog v2.0 © 2018-2022 www.2hider.com
 </div>
 </body>
 </html>
+<script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#content')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+</script>

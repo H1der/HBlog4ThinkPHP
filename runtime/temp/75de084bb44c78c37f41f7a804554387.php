@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1518689983;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518690205;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1518689983;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518794281;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,7 @@
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
     <script>
         if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -237,3 +238,10 @@
 </div>
 </body>
 </html>
+<script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#content')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+</script>

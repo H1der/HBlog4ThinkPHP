@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\store.html";i:1518695427;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518690205;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\store.html";i:1518869651;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518794281;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,7 @@
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
     <script>
         if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -187,19 +188,25 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">文章标题</label>
                             <div class="col-sm-9">
-                                <input type="text" name="title" class="form-control" placeholder="">
+                                <input type="text" name="arc_title" class="form-control" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">文章作者</label>
                             <div class="col-sm-9">
-                                <input type="text" name="author" class="form-control" placeholder="">
+                                <input type="text" name="arc_author" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章排序</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="arc_sort" class="form-control" placeholder="" value="100">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">所属分类</label>
                             <div class="col-sm-9">
-                                <select class="js-example-basic-single form-control" name="category_cid">
+                                <select class="js-example-basic-single form-control" name="cate_id">
                                     <option value="0">请选择分类</option>
                                     <?php if (is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if (count($cateData) == 0) : echo ""; else: foreach ($cateData as $key => $vo): ?>
                                         <option value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
@@ -212,7 +219,7 @@
                             <div class="col-sm-9">
                                 <?php if (is_array($tagData) || $tagData instanceof \think\Collection || $tagData instanceof \think\Paginator): if (count($tagData) == 0) : echo ""; else: foreach ($tagData as $key => $vo): ?>
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" name=""
+                                        <input type="checkbox" name="tag[]"
                                                value="<?php echo htmlentities($vo['tag_id']); ?>"> <?php echo htmlentities($vo['tag_name']); ?>
                                     </label>
                                 <?php endforeach; endif; else: echo "";endif; ?>
@@ -228,22 +235,29 @@
                         <!--</div>-->
                         <!--</div>-->
                         <!--</div>-->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">文章摘要</label>
-                            <div class="col-sm-9">
-                                <textarea type="text" name="digest" class="form-control" placeholder="文章摘要"></textarea>
-                            </div>
-                        </div>
+                        <!--<div class="form-group">-->
+                        <!--<label for="" class="col-sm-2 control-label">文章摘要</label>-->
+                        <!--<div class="col-sm-9">-->
+                        <!--<textarea type="text" name="digest" class="form-control" placeholder=""></textarea>-->
+                        <!--</div>-->
+                        <!--</div>-->
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">文章内容</label>
-                            <div class="col-sm-9">
-                                <textarea type="text" name="content" class="form-control" placeholder="文章摘要"></textarea>
+                            <div class="col-sm-9" id="content" name="arc_content">
+                                <!--<textarea type="text" name="content" class="form-control" placeholder=""></textarea>-->
                             </div>
                         </div>
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit">确定</button>
             </form>
+
+            <script type="text/javascript">
+                var E = window.wangEditor
+                var editor = new E('#content')
+                // 或者 var editor = new E( document.getElementById('editor') )
+                editor.create()
+            </script>
 
         </div>
     </div>
@@ -259,3 +273,10 @@
 </div>
 </body>
 </html>
+<script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#content')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+</script>
