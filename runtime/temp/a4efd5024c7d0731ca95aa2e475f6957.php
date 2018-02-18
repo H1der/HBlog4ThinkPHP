@@ -1,4 +1,4 @@
-<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518690205;}*/ ?>
+<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518964897;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
     <link href="/static/admin/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/admin/css/site.css" rel="stylesheet">
     <link href="/static/admin/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/wangEditor.min.css">
     <script src="/static/admin/js/jquery.min.js"></script>
     <script src="/static/admin/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
     <!--<script src="resource/hdjs/app/util.js"></script>-->
@@ -16,6 +17,7 @@
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
     <![endif]-->
     <script>
         if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -242,3 +244,4 @@
 </div>
 </body>
 </html>
+

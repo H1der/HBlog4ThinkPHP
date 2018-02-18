@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1518689983;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518874602;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1518970027;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518964977;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,6 +188,7 @@
                             <tr>
                                 <th width="5%">编号</th>
                                 <th>文章名称</th>
+                                <th>文章作者</th>
                                 <th width="5%">排序</th>
                                 <th>所属分类</th>
                                 <th>添加时间</th>
@@ -195,35 +196,51 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>编号</td>
-                                <td>标题</td>
-                                <td>
-                                    <input type="text" class="form-control">
-                                </td>
-                                <td>所属分类</td>
-                                <td>1990-10-1</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作
-                                            <span
-                                                    class="caret"></span></button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="">编辑</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="">删除到回收站</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php if (is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if (count($field) == 0) : echo ""; else: foreach ($field as $key => $vo): ?>
+                                <tr>
+                                    <td><?php echo htmlentities($vo['arc_id']); ?></td>
+                                    <td><?php echo htmlentities($vo['arc_title']); ?></td>
+                                    <td><?php echo htmlentities($vo['arc_author']); ?></td>
+                                    <td>
+                                        <input type="text" class="form-control"
+                                               value="<?php echo htmlentities($vo['arc_sort']); ?>"
+                                               onblur="changeSort(this,<?php echo htmlentities($vo['arc_id']); ?>)">
+                                    </td>
+                                    <td><?php echo htmlentities($vo['cate_name']); ?></td>
+                                    <td><?php echo date('Y-m-d', $vo['sendtime']); ?></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button data-toggle="dropdown"
+                                                    class="btn btn-primary btn-xs dropdown-toggle">操作 <span
+                                                        class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="">编辑</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="">删除到回收站</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; endif; else: echo "";endif; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </form>
             <div class="pagination pagination-sm pull-right">
-
+                <?php echo $field; ?>
             </div>
+            <script>
+                function changeSort(obj, arc_id) {
+                    var arc_sort = $(obj).val();
+                    // alert(arc_sort)
+                    // alert(arc_id)
+                    $.post("<?php echo url('changSort'); ?>", {arc_sort: arc_sort, arc_id: arc_id}, function (res) {
+                        window.location.href = "/";
+                    }, 'json')
+
+                }
+            </script>
 
         </div>
     </div>

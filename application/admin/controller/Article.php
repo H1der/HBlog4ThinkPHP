@@ -80,4 +80,18 @@ class Article extends Controller
         $this->assign('tagData', $tagData);
         return $this->fetch();
     }
+
+    public function changSort()
+    {
+//        halt($_POST);
+        if (request()->isAjax()) {
+            $res = $this->db->changeSort(input('post.'));
+            $arc = new \app\common\model\Article();
+            $arc->save([
+                'arc_sort' => $res['arc_sort'],
+            ], ['arc_id' => $res['arc_id']]);
+        }
+    }
+
+
 }

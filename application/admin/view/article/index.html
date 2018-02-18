@@ -35,7 +35,8 @@
                     <td>{$vo['arc_title']}</td>
                     <td>{$vo['arc_author']}</td>
                     <td>
-                        <input type="text" class="form-control" value="{$vo['arc_sort']}">
+                        <input type="text" class="form-control" value="{$vo['arc_sort']}"
+                               onblur="changeSort(this,{$vo['arc_id']})">
                     </td>
                     <td>{$vo['cate_name']}</td>
                     <td>{:date('Y-m-d',$vo['sendtime'])}</td>
@@ -60,4 +61,15 @@
 <div class="pagination pagination-sm pull-right">
     {$field|raw}
 </div>
+<script>
+    function changeSort(obj, arc_id) {
+        var arc_sort = $(obj).val();
+        // alert(arc_sort)
+        // alert(arc_id)
+        $.post("{:url('changSort')}", {arc_sort: arc_sort, arc_id: arc_id}, function (res) {
+
+        }, 'json')
+
+    }
+</script>
 {/block}

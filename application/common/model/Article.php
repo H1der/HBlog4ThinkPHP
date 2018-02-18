@@ -44,4 +44,10 @@ class Article extends Model
             ->order('a.arc_sort desc,a.sendtime desc,a.arc_id desc')->paginate(2);
 //        halt($data);
     }
+
+    //修改排序
+    public function changeSort($data)
+    {
+        return $data;
+    }
 }
