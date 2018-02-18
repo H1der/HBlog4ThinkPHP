@@ -19,6 +19,8 @@ class Article extends Controller
      */
     public function index()
     {
+        $filed = $this->db->getAll();
+        $this->assign('field', $filed);
         return $this->fetch();
     }
 
