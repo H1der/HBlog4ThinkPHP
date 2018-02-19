@@ -55,11 +55,6 @@ class Article extends Controller
                 ]);
                 $arc->allowField(true)->save();
                 foreach ($res['tag'] as $v) {
-//                    $arcTagData =[
-//                        'arc_id'=>$arc->arc_id,
-//                        'tag_id'=>$v
-//                    ];
-//                    (new ArcTag())->save($arcTagData);
                     $arctag = new ArcTag([
                         'arc_id' => $arc->arc_id,
                         'tag_id' => $v
@@ -96,6 +91,41 @@ class Article extends Controller
     //编辑
     public function edit()
     {
+        if (request()->isPost()) {
+            $res = $this->db->edit(input('post.'));
+            $validate = new \app\admin\validate\Article();
+//            halt($res);
+            if (!$validate->check($res)) {
+//            return ['valid' => 0, 'msg' => $this->getError()];
+                $this->error($validate->getError());
+                exit;
+            } else {
+                $arc = new \app\common\model\Article();
+                $arc->save([
+                    'arc_title' => $res['arc_title'],
+                    'arc_author' => $res['arc_author'],
+                    'arc_sort' => $res['arc_sort'],
+                    'cate_id' => $res['cate_id'],
+                    'arc_content' => $res['arc_content'],
+                    'arc_id' => $res['arc_id'],
+                ], ['arc_id' => $res['arc_id']]);
+                $arc->allowField(true)->save();
+//                User::where('id','>',10)->delete();
+                ArcTag::where('arc_id', '=', $res['arc_id'])->delete();
+//                halt($res);
+//                halt($res['tag']);
+                foreach ($res['tag'] as $v) {
+                    $arctag = new ArcTag([
+                        'arc_id' => $arc->arc_id,
+                        'tag_id' => $v
+                    ]);
+                    $arctag->save();
+                }
+                $this->success('修改成功', 'index');
+            }
+
+
+        }
         $arc_id = input('param.arc_id');
         //获取分类数据
         $cateData = (new \app\common\model\Category())->getAll();

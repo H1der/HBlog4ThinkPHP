@@ -50,4 +50,10 @@ class Article extends Model
     {
         return $data;
     }
+
+    //文章编辑
+    public function edit($data)
+    {
+        return $data;
+    }
 }

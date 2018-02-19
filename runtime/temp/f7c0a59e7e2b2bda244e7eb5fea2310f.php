@@ -1,4 +1,4 @@
-<?php /*a:2:{s:69:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\edit.html";i:1519043876;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
+<?php /*a:2:{s:69:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\edit.html";i:1519045406;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -213,8 +213,8 @@
                                 <select class="js-example-basic-single form-control" name="cate_id">
                                     <option value="0">请选择分类</option>
                                     <?php if (is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if (count($cateData) == 0) : echo ""; else: foreach ($cateData as $key => $vo): ?>
-                                        <option <?php if ($oldData['cate_id'] == $vo['cate_id']): ?> selected <?php endif; ?>
-                                                value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
+                                        <option {if condition="$oldData['cate_id']==$vo['cate_id']" } selected {
+                                        /if} value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
                                     <?php endforeach; endif; else: echo "";endif; ?>
                                 </select>
                             </div>
@@ -225,7 +225,8 @@
                                 <?php if (is_array($tagData) || $tagData instanceof \think\Collection || $tagData instanceof \think\Paginator): if (count($tagData) == 0) : echo ""; else: foreach ($tagData as $key => $vo): ?>
                                     <label class="checkbox-inline">
                                         <input <?php if (in_array($vo['tag_id'], $tag_ids)): ?> checked <?php endif; ?>
-                                                type="checkbox" name="tag[]"
+                                                type="checkbox"
+                                                name="tag[]"
                                                 value="<?php echo htmlentities($vo['tag_id']); ?>"> <?php echo htmlentities($vo['tag_name']); ?>
                                     </label>
                                 <?php endforeach; endif; else: echo "";endif; ?>
@@ -258,6 +259,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="arc_id" value="<?php echo input('param.arc_id'); ?>">
                 <button class="btn btn-primary" type="submit" id="submit">确定</button>
             </form>
 
