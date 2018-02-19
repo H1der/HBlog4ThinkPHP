@@ -93,5 +93,28 @@ class Article extends Controller
         }
     }
 
+    //编辑
+    public function edit()
+    {
+        $arc_id = input('param.arc_id');
+        //获取分类数据
+        $cateData = (new \app\common\model\Category())->getAll();
+        $this->assign('cateData', $cateData);
+
+        //获取标签数据
+        $tagData = db('tag')->select();
+        $this->assign('tagData', $tagData);
+
+        //获取旧数据
+        $oldData = db('article')->find($arc_id);
+        $this->assign('oldData', $oldData);
+//        halt($oldData);
+
+        //获取标签
+        $tag_ids = db('arc_tag')->where('arc_id', $arc_id)->column('tag_id');
+        $this->assign('tag_ids', $tag_ids);
+        return $this->fetch();
+    }
+
 
 }

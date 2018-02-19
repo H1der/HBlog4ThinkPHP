@@ -1,4 +1,4 @@
-<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518964897;}*/ ?>
+<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518964977;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +17,7 @@
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+
     <![endif]-->
     <script>
         if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -244,4 +244,18 @@
 </div>
 </body>
 </html>
+<script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
 
+    var editor = new E('#content')
+    var $arc_content = $('#arc_content')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        $arc_content.val(html)
+    }
+    editor.create()
+    // 初始化 textarea 的值
+    $arc_content.val(editor.txt.html())
+</script>

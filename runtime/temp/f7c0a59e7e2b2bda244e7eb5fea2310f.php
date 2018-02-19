@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1519042129;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
+<?php /*a:2:{s:69:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\edit.html";i:1519043876;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,76 +173,93 @@
                         文章管理</a>
                 </li>
                 <li class="active">
-                    <a href="">文章添加</a>
+                    <a href="">文章编辑</a>
                 </li>
             </ol>
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#tab1">文章管理</a></li>
-                <li><a href="<?php echo url('store'); ?>">文章添加</a></li>
+                <li><a href="<?php echo url('index'); ?>">文章管理</a></li>
+                <li class="active"><a href="">文章编辑</a></li>
             </ul>
-            <form action="" method="post">
+            <form class="form-horizontal" id="form" action="" method="post">
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">文章管理</h3>
+                    </div>
                     <div class="panel-body">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th width="5%">编号</th>
-                                <th>文章名称</th>
-                                <th>文章作者</th>
-                                <th width="5%">排序</th>
-                                <th>所属分类</th>
-                                <th>添加时间</th>
-                                <th width="200">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php if (is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if (count($field) == 0) : echo ""; else: foreach ($field as $key => $vo): ?>
-                                <tr>
-                                    <td><?php echo htmlentities($vo['arc_id']); ?></td>
-                                    <td><?php echo htmlentities($vo['arc_title']); ?></td>
-                                    <td><?php echo htmlentities($vo['arc_author']); ?></td>
-                                    <td>
-                                        <input type="text" class="form-control"
-                                               value="<?php echo htmlentities($vo['arc_sort']); ?>"
-                                               onblur="changeSort(this,<?php echo htmlentities($vo['arc_id']); ?>)">
-                                    </td>
-                                    <td><?php echo htmlentities($vo['cate_name']); ?></td>
-                                    <td><?php echo date('Y-m-d', $vo['sendtime']); ?></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button data-toggle="dropdown"
-                                                    class="btn btn-primary btn-xs dropdown-toggle">操作 <span
-                                                        class="caret"></span></button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="<?php echo url('edit', ['arc_id' => $vo['arc_id']]); ?>">编辑</a>
-                                                </li>
-                                                <li class="divider"></li>
-                                                <li><a href="">删除到回收站</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php endforeach; endif; else: echo "";endif; ?>
-                            </tbody>
-                        </table>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章标题</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="arc_title" class="form-control" placeholder=""
+                                       value="<?php echo htmlentities($oldData['arc_title']); ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章作者</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="arc_author" class="form-control" placeholder=""
+                                       value="<?php echo htmlentities($oldData['arc_author']); ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章排序</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="arc_sort" class="form-control" placeholder=""
+                                       value="<?php echo htmlentities($oldData['arc_sort']); ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">所属分类</label>
+                            <div class="col-sm-9">
+                                <select class="js-example-basic-single form-control" name="cate_id">
+                                    <option value="0">请选择分类</option>
+                                    <?php if (is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if (count($cateData) == 0) : echo ""; else: foreach ($cateData as $key => $vo): ?>
+                                        <option <?php if ($oldData['cate_id'] == $vo['cate_id']): ?> selected <?php endif; ?>
+                                                value="<?php echo htmlentities($vo['cate_id']); ?>"><?php echo htmlentities($vo['_cate_name']); ?></option>
+                                    <?php endforeach; endif; else: echo "";endif; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">标签</label>
+                            <div class="col-sm-9">
+                                <?php if (is_array($tagData) || $tagData instanceof \think\Collection || $tagData instanceof \think\Paginator): if (count($tagData) == 0) : echo ""; else: foreach ($tagData as $key => $vo): ?>
+                                    <label class="checkbox-inline">
+                                        <input <?php if (in_array($vo['tag_id'], $tag_ids)): ?> checked <?php endif; ?>
+                                                type="checkbox" name="tag[]"
+                                                value="<?php echo htmlentities($vo['tag_id']); ?>"> <?php echo htmlentities($vo['tag_name']); ?>
+                                    </label>
+                                <?php endforeach; endif; else: echo "";endif; ?>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                        <!--<label for="" class="col-sm-2 control-label">缩略图</label>-->
+                        <!--<div class="col-sm-9">-->
+                        <!--<div class="input-group">-->
+                        <!--<div class="input-group-btn">-->
+                        <!--<input type="file" class="btn btn-default" name="">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label for="" class="col-sm-2 control-label">文章摘要</label>-->
+                        <!--<div class="col-sm-9">-->
+                        <!--<textarea type="text" name="digest" class="form-control" placeholder=""></textarea>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">文章内容</label>
+                            <div class="col-sm-9" id="content">
+                                <!--<textarea type="text" name="content" class="form-control" placeholder=""></textarea>-->
+                                <p><?php echo htmlentities($oldData['arc_content']); ?></p>
+                            </div>
+                            <textarea hidden id="arc_content" name="arc_content"
+                                      style="width:100%; height:200px;"></textarea>
+                        </div>
                     </div>
                 </div>
+                <button class="btn btn-primary" type="submit" id="submit">确定</button>
             </form>
-            <div class="pagination pagination-sm pull-right">
-                <?php echo $field; ?>
-            </div>
-            <script>
-                function changeSort(obj, arc_id) {
-                    var arc_sort = $(obj).val();
-                    // alert(arc_sort)
-                    // alert(arc_id)
-                    $.post("<?php echo url('changSort'); ?>", {arc_sort: arc_sort, arc_id: arc_id}, function (res) {
-
-                    }, 'json')
-
-                }
-            </script>
 
 
         </div>
