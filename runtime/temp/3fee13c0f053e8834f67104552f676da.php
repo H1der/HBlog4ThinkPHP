@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518964977;}*/ ?>
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

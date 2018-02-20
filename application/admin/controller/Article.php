@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\common\model\ArcTag;
+use function PHPSTORM_META\elementType;
 use think\Controller;
 
 class Article extends Controller
@@ -144,6 +145,22 @@ class Article extends Controller
         $tag_ids = db('arc_tag')->where('arc_id', $arc_id)->column('tag_id');
         $this->assign('tag_ids', $tag_ids);
         return $this->fetch();
+    }
+
+    //删除到回收站
+    public function delToRecycle()
+    {
+        $arc_id = input('param.arc_id');
+
+        if ($this->db->save(['isrecycle' => 1], ['arc_id' => $arc_id])) {
+            $this->success('操作成功', 'index');
+            exit;
+        } else {
+            $this->error('操作失败');
+            exit;
+
+        }
+
     }
 
 

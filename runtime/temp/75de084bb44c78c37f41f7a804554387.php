@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1519042129;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
+<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1519138507;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -218,7 +218,9 @@
                                                     <a href="<?php echo url('edit', ['arc_id' => $vo['arc_id']]); ?>">编辑</a>
                                                 </li>
                                                 <li class="divider"></li>
-                                                <li><a href="">删除到回收站</a></li>
+                                                <li>
+                                                    <a href="<?php echo url('delToRecycle', ['arc_id' => $vo['arc_id']]); ?>">删除到回收站</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </td>
