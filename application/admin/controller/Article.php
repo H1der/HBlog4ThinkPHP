@@ -20,7 +20,7 @@ class Article extends Controller
      */
     public function index()
     {
-        $filed = $this->db->getAll();
+        $filed = $this->db->getAll(2);
         $this->assign('field', $filed);
         return $this->fetch();
     }
@@ -158,10 +158,44 @@ class Article extends Controller
         } else {
             $this->error('操作失败');
             exit;
-
         }
 
     }
 
+    //回收站管理
+    public function recycle()
+    {
+        $filed = $this->db->getAll(1);
+        $this->assign('field', $filed);
+        return $this->fetch();
+    }
+
+    //恢复数据
+    public function outToRecycle()
+    {
+        $arc_id = input('param.arc_id');
+
+        if ($this->db->save(['isrecycle' => 2], ['arc_id' => $arc_id])) {
+            $this->success('操作成功', 'index');
+            exit;
+        } else {
+            $this->error('操作失败');
+            exit;
+        }
+    }
+
+    //回收站删除
+    public function del()
+    {
+        $arc_id = input('get.arc_id');
+        if (\app\common\model\Article::destroy($arc_id)) {
+            (new ArcTag())->where('arc_id', $arc_id)->delete();
+            $this->success('删除成功', 'index');
+            exit;
+        } else {
+            $this->error('删除失败');
+            die;
+        }
+    }
 
 }

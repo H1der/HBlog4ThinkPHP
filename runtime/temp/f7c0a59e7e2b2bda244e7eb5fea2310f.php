@@ -1,4 +1,4 @@
-<?php /*a:2:{s:69:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\edit.html";i:1519045406;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
+<?php /*a:2:{s:69:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\edit.html";i:1519045406;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519221502;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,7 +125,7 @@
                     </a>
                     <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
-                        <span class="pull-right" href=""></span>
+                        <span class="pull-right" href="<?php echo url('admin/article/recycle'); ?>"></span>
                         回收站
                     </a>
                 </ul>

@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519042198;}*/ ?>
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\entry\index.html";i:1518255843;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519221482;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,7 +139,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample4">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-link" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         友链列表

@@ -1,4 +1,4 @@
-<?php /*a:2:{s:70:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\index.html";i:1519138507;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519221502;}*/ ?>
+<?php /*a:2:{s:72:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\article\recycle.html";i:1519222196;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519221502;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,12 +173,12 @@
                         文章管理</a>
                 </li>
                 <li class="active">
-                    <a href="">文章添加</a>
+                    <a href="">回收站</a>
                 </li>
             </ol>
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#tab1">文章管理</a></li>
-                <li><a href="<?php echo url('store'); ?>">文章添加</a></li>
+                <li class="active"><a href="#tab1">回收站</a></li>
+                <!--<li><a href="<?php echo url('store'); ?>">文章添加</a></li>-->
             </ul>
             <form action="" method="post">
                 <div class="panel panel-default">
@@ -215,11 +215,11 @@
                                                         class="caret"></span></button>
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li>
-                                                    <a href="<?php echo url('edit', ['arc_id' => $vo['arc_id']]); ?>">编辑</a>
+                                                    <a href="<?php echo url('outToRecycle', ['arc_id' => $vo['arc_id']]); ?>">恢复</a>
                                                 </li>
                                                 <li class="divider"></li>
-                                                <li>
-                                                    <a href="<?php echo url('delToRecycle', ['arc_id' => $vo['arc_id']]); ?>">删除到回收站</a>
+                                                <li><a href="javascript:;"
+                                                       onclick="del(<?php echo htmlentities($vo['arc_id']); ?>)">删除</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -235,14 +235,10 @@
                 <?php echo $field; ?>
             </div>
             <script>
-                function changeSort(obj, arc_id) {
-                    var arc_sort = $(obj).val();
-                    // alert(arc_sort)
-                    // alert(arc_id)
-                    $.post("<?php echo url('changSort'); ?>", {arc_sort: arc_sort, arc_id: arc_id}, function (res) {
-
-                    }, 'json')
-
+                function del(arc_id) {
+                    if (confirm("确定删除吗?")) {
+                        location.href = "<?php echo url('del'); ?>" + '?arc_id=' + arc_id;
+                    }
                 }
             </script>
 
