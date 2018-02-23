@@ -1,3 +1,4 @@
+<?php /*a:2:{s:69:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\webset\index.html";i:1519389626;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519388154;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i
-                                    class="fa fa-w fa-file-code-o"></i>
+                                        class="fa fa-w fa-file-code-o"></i>
                                 首页</a>
                         </li>
                     </ul>
@@ -53,11 +54,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="">退出</a></li>
                         </ul>
@@ -83,7 +84,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-certificate" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -100,7 +101,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample2">
-                    <a href="{:url('admin/tag/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/tag/index'); ?>" class="list-group-item">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         标签列表
@@ -117,14 +118,14 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample3">
-                    <a href="{:url('admin/article/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
                         <i class="fa fa-list" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="{:url('admin/article/recycle')}" class="list-group-item">
+                    <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
-                        <span class="pull-right" href="{:url('admin/article/recycle')}"></span>
+                        <span class="pull-right" href="<?php echo url('admin/article/recycle'); ?>"></span>
                         回收站
                     </a>
                 </ul>
@@ -138,7 +139,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample4">
-                    <a href="{:url('admin/link/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/link/index'); ?>" class="list-group-item">
                         <i class="fa fa-link" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         友链列表
@@ -154,7 +155,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample5">
-                    <a href="{:url('admin/webset/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/webset/index'); ?>" class="list-group-item">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         网站配置
@@ -165,7 +166,64 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+
+            <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+                <li>
+                    <a href=""><i class="fa fa-cogs"></i>
+                        站点管理</a>
+                </li>
+                <li class="active">
+                    <a href="">站点配置</a>
+                </li>
+            </ol>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#tab1">站点配置</a></li>
+            </ul>
+            <form action="" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th width="5%">编号</th>
+                                <th>配置名称</th>
+                                <th width="20%">配置值</th>
+                                <th>描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if (is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if (count($field) == 0) : echo ""; else: foreach ($field as $key => $vo): ?>
+                                <tr>
+                                    <td><?php echo htmlentities($vo['webset_id']); ?></td>
+                                    <td><?php echo htmlentities($vo['webset_name']); ?></td>
+                                    <td>
+                                        <input type="text" class="form-control"
+                                               value="<?php echo htmlentities($vo['webset_value']); ?>"
+                                               onblur="change(this,<?php echo htmlentities($vo['webset_id']); ?>)">
+                                    </td>
+                                    <td><?php echo htmlentities($vo['webset_dis']); ?></td>
+                                </tr>
+                            <?php endforeach; endif; else: echo "";endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+            <div class="pagination pagination-sm pull-right">
+            </div>
+            <script>
+                function change(obj, webset_id) {
+                    var webset_value = $(obj).val();
+                    $.post("<?php echo url('edit'); ?>", {
+                        webset_value: webset_value,
+                        webset_id: webset_id
+                    }, function (res) {
+
+                    }, 'json')
+
+                }
+            </script>
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->

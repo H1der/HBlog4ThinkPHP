@@ -1,4 +1,4 @@
-<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1518964977;}*/ ?>
+<?php /*a:2:{s:66:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\tag\index.html";i:1518539123;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519388154;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,7 +125,7 @@
                     </a>
                     <a href="<?php echo url('admin/article/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
-                        <span class="pull-right" href=""></span>
+                        <span class="pull-right" href="<?php echo url('admin/article/recycle'); ?>"></span>
                         回收站
                     </a>
                 </ul>
@@ -139,7 +139,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample4">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/link/index'); ?>" class="list-group-item">
                         <i class="fa fa-link" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         友链列表
@@ -155,7 +155,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample5">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/webset/index'); ?>" class="list-group-item">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         网站配置
