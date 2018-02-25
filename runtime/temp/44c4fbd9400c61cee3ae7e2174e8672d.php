@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\index\index.html";i:1519484768;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519484745;}*/ ?>
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\index\index.html";i:1519485153;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519573777;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1>欢迎来到后盾BLOG教学系统</h1>
+                <h1><?php echo htmlentities($_webset['title']); ?></h1>
             </div>
         </div>
     </div>
@@ -50,9 +50,11 @@
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="_menu">
                         <li class="_active"><a href="index.html">首页</a></li>
-                        <li><a href="">新闻</a></li>
-                        <li><a href="">军事</a></li>
-                        <li><a href="">娱乐</a></li>
+                        <?php if (is_array($_cateData) || $_cateData instanceof \think\Collection || $_cateData instanceof \think\Paginator): if (count($_cateData) == 0) : echo ""; else: foreach ($_cateData as $key => $vo): ?>
+                            <li>
+                                <a href="<?php echo url('index/lists/index', ['cate_id' => $vo['cate_id']]); ?>"><?php echo htmlentities($vo['cate_name']); ?></a>
+                            </li>
+                        <?php endforeach; endif; else: echo "";endif; ?>
                     </ul>
                 </div>
             </div>
@@ -127,27 +129,29 @@
             </main>
             <aside class="col-md-4 hidden-sm hidden-xs">
                 <div class="_widget">
-                    <h4>关于后盾</h4>
+                    <h4>关于HBlog</h4>
                     <div class="_info">
-                        <p>最认真的PHP培训机构 只讲真功夫的PHP培训机构 最火爆的IT课程</p>
+                        <p>基于 Think PHP5.1 制作的 Blog 程序</p>
                         <p>
                             <i class="glyphicon glyphicon-volume-down"></i>
-                            <a href="http://www.houdunwang.com" target="_blank">北京后盾网</a>
+                            <a href="https://www.2hider.com" target="_blank">作者博客</a>
                         </p>
                     </div>
                 </div>
                 <div class="_widget">
                     <h4>分类列表</h4>
                     <div>
-                        <a href="">娱乐</a>
+                        <?php if (is_array($_allCateData) || $_allCateData instanceof \think\Collection || $_allCateData instanceof \think\Paginator): if (count($_allCateData) == 0) : echo ""; else: foreach ($_allCateData as $key => $vo): ?>
+                            <a href="<?php echo url('index/lists/index', ['cate_id' => $vo['cate_id']]); ?>"><?php echo htmlentities($vo['cate_name']); ?></a>
+                        <?php endforeach; endif; else: echo "";endif; ?>
                     </div>
                 </div>
                 <div class="_widget">
                     <h4>标签云</h4>
                     <div class="_tag">
-                        <a href="">PHP</a>
-                        <a href="">PHP</a>
-                        <a href="">PHP</a>
+                        <?php if (is_array($_tagData) || $_tagData instanceof \think\Collection || $_tagData instanceof \think\Paginator): if (count($_tagData) == 0) : echo ""; else: foreach ($_tagData as $key => $vo): ?>
+                            <a href="<?php echo url('index/lists/index', ['tag_id' => $vo['tag_id']]); ?>"><?php echo htmlentities($vo['tag_name']); ?></a>
+                        <?php endforeach; endif; else: echo "";endif; ?>
                     </div>
                 </div>
 
@@ -172,9 +176,9 @@
             <div class="col-sm-4 footer_tag">
                 <div id="">
                     <h4 class="_title">标签云</h4>
-                    <a href="">PHP</a>
-                    <a href="">PHP</a>
-                    <a href="">PHP</a>
+                    <?php if (is_array($_tagData) || $_tagData instanceof \think\Collection || $_tagData instanceof \think\Paginator): if (count($_tagData) == 0) : echo ""; else: foreach ($_tagData as $key => $vo): ?>
+                        <a href="<?php echo url('index/lists/index', ['tag_id' => $vo['tag_id']]); ?>"><?php echo htmlentities($vo['tag_name']); ?></a>
+                    <?php endforeach; endif; else: echo "";endif; ?>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -191,11 +195,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <a href="">网站名称</a>
+                <a href=""><?php echo htmlentities($_webset['title']); ?></a>
                 |
-                <a href="">版权信息</a>
+                <a href=""><?php echo htmlentities($_webset['copyright']); ?></a>
                 |
-                <a href="">admin@163.com</a>
+                <a href=""><?php echo htmlentities($_webset['email']); ?></a>
             </div>
         </div>
     </div>
