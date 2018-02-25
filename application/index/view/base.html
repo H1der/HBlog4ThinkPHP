@@ -103,14 +103,12 @@
         <div class="row">
             <div class="col-sm-4">
                 <h4 class="_title">最新文章</h4>
-                <div id="" class="_single">
-                    <p><a href="">标题</a></p>
-                    <time>2010年11月06日11:24:16</time>
+                {foreach name='_articleData' item='vo'}
+                <div class="_single">
+                    <p><a href="{:url('index/content/index',['arc_id'=>$vo['arc_id']])}">{$vo['arc_title']}</a></p>
+                    <time>{:date('Y年m月d日',$vo['sendtime'])}</time>
                 </div>
-                <div id="" class="_single">
-                    <p><a href="">标题</a></p>
-                    <time>2010年11月06日11:24:16</time>
-                </div>
+                {/foreach}
             </div>
             <div class="col-sm-4 footer_tag">
                 <div id="">
@@ -123,8 +121,9 @@
             <div class="col-sm-4">
                 <h4 class="_title">友情链接</h4>
                 <div id="" class="_single">
-                    <p><a href="" target="_blank">百度</a></p>
-                    <p><a href="" target="_blank">百度</a></p>
+                    {foreach name='_linkData' item='vo'}
+                    <p><a href="{$vo['link_url']}" target="_blank">{$vo['link_name']}</a></p>
+                    {/foreach}
                 </div>
             </div>
         </div>

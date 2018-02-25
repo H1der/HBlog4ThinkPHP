@@ -31,6 +31,10 @@ class Common extends Controller
         $articleData = $this->loadArticle();
         $this->assign('_articleData', $articleData);
 
+        //友情链接
+        $linkData = $this->loadLinkData();
+        $this->assign('_linkData', $linkData);
+
     }
 
     /**
@@ -66,6 +70,12 @@ class Common extends Controller
     //获取最新文章
     private function loadArticle()
     {
-        return db('article')->order('sendtime desc')->limit(3)->field('arc_id,arc_title,sendtime')->select();
+        return db('article')->order('sendtime desc')->limit(2)->field('arc_id,arc_title,sendtime')->select();
+    }
+
+    //获取友情链接
+    private function loadLinkData()
+    {
+        return db('link')->order('link_sort desc')->select();
     }
 }
