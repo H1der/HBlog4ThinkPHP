@@ -1,4 +1,4 @@
-<?php /*a:2:{s:67:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\link\index.html";i:1519310007;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519307727;}*/ ?>
+<?php /*a:2:{s:67:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\link\index.html";i:1519310069;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/admin/view\base.html";i:1519388154;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,7 +155,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample5">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/webset/index'); ?>" class="list-group-item">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         网站配置

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>hdphp教学博客-首页</title>
+    <title>博客-首页</title>
     <!--描述和摘要-->
     <meta name="Description" content=""/>
     <meta name="Keywords" content=""/>
@@ -64,6 +64,35 @@
         <div class="row">
             <!--标签规定文档的主要内容main-->
             <main class="col-md-8">
+                <article class="_carousel">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="/static/index/images/1.jpg">
+                            </div>
+                            <div class="item">
+                                <img src="/static/index/images/2.jpg">
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </article>
                 {block name='content'}{/block}
             </main>
             <aside class="col-md-4 hidden-sm hidden-xs">
