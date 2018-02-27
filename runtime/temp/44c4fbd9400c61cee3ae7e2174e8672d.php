@@ -1,10 +1,10 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\index\index.html";i:1519651878;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519651190;}*/ ?>
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\index\index.html";i:1519652001;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519738792;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>博客-首页</title>
+    <title><?php echo htmlentities($headConf['title']); ?></title>
     <!--描述和摘要-->
     <meta name="Description" content=""/>
     <meta name="Keywords" content=""/>
@@ -49,9 +49,10 @@
 
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="_menu">
-                        <li class="_active"><a href="index.html">首页</a></li>
+                        <li <?php if (!input('param.')): ?>class="_active"<?php endif; ?>><a
+                                    href="<?php echo url('index/index/index'); ?>">首页</a></li>
                         <?php if (is_array($_cateData) || $_cateData instanceof \think\Collection || $_cateData instanceof \think\Paginator): if (count($_cateData) == 0) : echo ""; else: foreach ($_cateData as $key => $vo): ?>
-                            <li>
+                            <li <?php if (input('param.cate_id') == $vo['cate_id']): ?> class="_active" <?php endif; ?>>
                                 <a href="<?php echo url('index/lists/index', ['cate_id' => $vo['cate_id']]); ?>"><?php echo htmlentities($vo['cate_name']); ?></a>
                             </li>
                         <?php endforeach; endif; else: echo "";endif; ?>

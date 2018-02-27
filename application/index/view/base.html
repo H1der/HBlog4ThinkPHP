@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>博客-首页</title>
+    <title>{$headConf['title']}</title>
     <!--描述和摘要-->
     <meta name="Description" content=""/>
     <meta name="Keywords" content=""/>
@@ -48,9 +48,11 @@
 
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="_menu">
-                        <li class="_active"><a href="index.html">首页</a></li>
+                        <li {if condition="!input('param.')" }class="_active" {
+                        /if}><a href="{:url('index/index/index')}">首页</a></li>
                         {foreach name='_cateData' item='vo'}
-                        <li><a href="{:url('index/lists/index',['cate_id'=>$vo['cate_id']])}">{$vo['cate_name']}</a>
+                        <li {if condition="input('param.cate_id')==$vo['cate_id']" } class="_active" {
+                        /if}><a href="{:url('index/lists/index',['cate_id'=>$vo['cate_id']])}">{$vo['cate_name']}</a>
                         </li>
                         {/foreach}
                     </ul>

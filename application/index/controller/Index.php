@@ -7,6 +7,9 @@ class Index extends Common
 {
     public function index()
     {
+        $headConf = ['title' => 'HBlog--首页'];
+        $this->assign('headConf', $headConf);
+
         $articleData = db('article')->alias('a')
             ->join('__CATE__ c', 'a.cate_id=c.cate_id')->order('sendtime desc')->select();
 

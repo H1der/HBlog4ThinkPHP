@@ -1,10 +1,10 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\lists\index.html";i:1519484872;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519484745;}*/ ?>
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\lists\index.html";i:1519739331;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519738815;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>hdphp教学博客-首页</title>
+    <title><?php echo htmlentities($headConf['title']); ?></title>
     <!--描述和摘要-->
     <meta name="Description" content=""/>
     <meta name="Keywords" content=""/>
@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1>欢迎来到后盾BLOG教学系统</h1>
+                <h1><?php echo htmlentities($_webset['title']); ?></h1>
             </div>
         </div>
     </div>
@@ -49,10 +49,13 @@
 
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="_menu">
-                        <li class="_active"><a href="index.html">首页</a></li>
-                        <li><a href="">新闻</a></li>
-                        <li><a href="">军事</a></li>
-                        <li><a href="">娱乐</a></li>
+                        <li {if condition="!input('param.')" }class="_active" {
+                        /if}><a href="<?php echo url('index/index/index'); ?>">首页</a></li>
+                        <?php if (is_array($_cateData) || $_cateData instanceof \think\Collection || $_cateData instanceof \think\Paginator): if (count($_cateData) == 0) : echo ""; else: foreach ($_cateData as $key => $vo): ?>
+                            <li <?php if (input('param.cate_id') == $vo['cate_id']): ?> class="_active" <?php endif; ?>>
+                                <a href="<?php echo url('index/lists/index', ['cate_id' => $vo['cate_id']]); ?>"><?php echo htmlentities($vo['cate_name']); ?></a>
+                            </li>
+                        <?php endforeach; endif; else: echo "";endif; ?>
                     </ul>
                 </div>
             </div>
@@ -64,74 +67,109 @@
         <div class="row">
             <!--标签规定文档的主要内容main-->
             <main class="col-md-8">
+                <article class="_carousel">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="/static/index/images/1.jpg">
+                            </div>
+                            <div class="item">
+                                <img src="/static/index/images/2.jpg">
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </article>
 
                 <article>
                     <div class="_head category_title">
                         <h2>
-                            标签：
+                            <?php echo htmlentities($headData['title']); ?>：
                             <!--分类：-->
-                            分类或者标签名称
+                            <?php echo htmlentities($headData['name']); ?>
                         </h2>
                         <span>
-									共 22 篇文章
+									共 <?php echo htmlentities($headData['total']); ?> 篇文章
 								</span>
                     </div>
                 </article>
-                <article>
-                    <div class="_head">
-                        <h1>标题</h1>
-                        <span>
+                <?php if (is_array($articleData) || $articleData instanceof \think\Collection || $articleData instanceof \think\Paginator): if (count($articleData) == 0) : echo ""; else: foreach ($articleData as $key => $vo): ?>
+                    <article>
+                        <div class="_head">
+                            <h1><?php echo htmlentities($vo['arc_title']); ?></h1>
+                            <span>
 								作者：
-								admin
+                                <?php echo htmlentities($vo['arc_author']); ?>
 								</span>
-                        •
-                        <!--pubdate表⽰示发布⽇日期-->
-                        <time pubdate="pubdate" datetime="">2015年11月06日11:34:39</time>
-                        •
-                        分类：
-                        <a href="">新闻</a>
-                    </div>
-                    <div class="_digest">
-                        <img src="./images/1.jpg" class="img-responsive"/>
-                        <p>
-                            摘要
-                        </p>
-                    </div>
-                    <div class="_more">
-                        <a href="" class="btn btn-default">阅读全文</a>
-                    </div>
-                    <div class="_footer">
-                        <i class="glyphicon glyphicon-tags"></i>
-                        <a href="">php</a>、
-                        <a href="">php</a>、
-                        <a href="">php</a>、
-                    </div>
-                </article>
+                            •
+                            <!--pubdate表⽰示发布⽇日期-->
+                            <time pubdate="pubdate"
+                                  datetime="<?php echo date('Y-m-d', $vo['sendtime']); ?>"><?php echo date('Y-m-d', $vo['sendtime']); ?></time>
+                            •
+                            分类：
+                            <a href=""><?php echo htmlentities($vo['cate_name']); ?></a>
+                        </div>
+                        <div class="_digest">
+                            <!--<img src="./images/1.jpg" class="img-responsive"/>-->
+                            <!--<p>-->
+                            <!--摘要-->
+                            <!--</p>-->
+                        </div>
+                        <div class="_more">
+                            <a href="<?php echo url('index/content/index', ['arc_id' => $vo['arc_id']]); ?>"
+                               class="btn btn-default">阅读全文</a>
+                        </div>
+                        <div class="_footer">
+                            <i class="glyphicon glyphicon-tags"></i>
+                            <?php if (is_array($vo['tags']) || $vo['tags'] instanceof \think\Collection || $vo['tags'] instanceof \think\Paginator): if (count($vo['tags']) == 0) : echo ""; else: foreach ($vo['tags'] as $key => $v): ?>
+                                <a href="<?php echo url('index/lists/index', ['tag_id' => $v['tag_id']]); ?>"><?php echo htmlentities($v['tag_name']); ?></a>、
+                            <?php endforeach; endif; else: echo "";endif; ?>
+                        </div>
+                    </article>
+                <?php endforeach; endif; else: echo "";endif; ?>
 
             </main>
             <aside class="col-md-4 hidden-sm hidden-xs">
                 <div class="_widget">
-                    <h4>关于后盾</h4>
+                    <h4>关于HBlog</h4>
                     <div class="_info">
-                        <p>最认真的PHP培训机构 只讲真功夫的PHP培训机构 最火爆的IT课程</p>
+                        <p>基于 Think PHP5.1 制作的 Blog 程序</p>
                         <p>
                             <i class="glyphicon glyphicon-volume-down"></i>
-                            <a href="http://www.houdunwang.com" target="_blank">北京后盾网</a>
+                            <a href="https://www.2hider.com" target="_blank">作者博客</a>
                         </p>
                     </div>
                 </div>
                 <div class="_widget">
                     <h4>分类列表</h4>
                     <div>
-                        <a href="">娱乐</a>
+                        <?php if (is_array($_allCateData) || $_allCateData instanceof \think\Collection || $_allCateData instanceof \think\Paginator): if (count($_allCateData) == 0) : echo ""; else: foreach ($_allCateData as $key => $vo): ?>
+                            <a href="<?php echo url('index/lists/index', ['cate_id' => $vo['cate_id']]); ?>"><?php echo htmlentities($vo['cate_name']); ?></a>
+                        <?php endforeach; endif; else: echo "";endif; ?>
                     </div>
                 </div>
                 <div class="_widget">
                     <h4>标签云</h4>
                     <div class="_tag">
-                        <a href="">PHP</a>
-                        <a href="">PHP</a>
-                        <a href="">PHP</a>
+                        <?php if (is_array($_tagData) || $_tagData instanceof \think\Collection || $_tagData instanceof \think\Paginator): if (count($_tagData) == 0) : echo ""; else: foreach ($_tagData as $key => $vo): ?>
+                            <a href="<?php echo url('index/lists/index', ['tag_id' => $vo['tag_id']]); ?>"><?php echo htmlentities($vo['tag_name']); ?></a>
+                        <?php endforeach; endif; else: echo "";endif; ?>
                     </div>
                 </div>
 
@@ -144,28 +182,30 @@
         <div class="row">
             <div class="col-sm-4">
                 <h4 class="_title">最新文章</h4>
-                <div id="" class="_single">
-                    <p><a href="">标题</a></p>
-                    <time>2010年11月06日11:24:16</time>
+                <?php if (is_array($_articleData) || $_articleData instanceof \think\Collection || $_articleData instanceof \think\Paginator): if (count($_articleData) == 0) : echo ""; else: foreach ($_articleData as $key => $vo): ?>
+                    <div class="_single">
+                        <p>
+                            <a href="<?php echo url('index/content/index', ['arc_id' => $vo['arc_id']]); ?>"><?php echo htmlentities($vo['arc_title']); ?></a>
+                        </p>
+                        <time><?php echo date('Y年m月d日', $vo['sendtime']); ?></time>
                 </div>
-                <div id="" class="_single">
-                    <p><a href="">标题</a></p>
-                    <time>2010年11月06日11:24:16</time>
-                </div>
+                <?php endforeach; endif; else: echo "";endif; ?>
             </div>
             <div class="col-sm-4 footer_tag">
                 <div id="">
                     <h4 class="_title">标签云</h4>
-                    <a href="">PHP</a>
-                    <a href="">PHP</a>
-                    <a href="">PHP</a>
+                    <?php if (is_array($_tagData) || $_tagData instanceof \think\Collection || $_tagData instanceof \think\Paginator): if (count($_tagData) == 0) : echo ""; else: foreach ($_tagData as $key => $vo): ?>
+                        <a href="<?php echo url('index/lists/index', ['tag_id' => $vo['tag_id']]); ?>"><?php echo htmlentities($vo['tag_name']); ?></a>
+                    <?php endforeach; endif; else: echo "";endif; ?>
                 </div>
             </div>
             <div class="col-sm-4">
                 <h4 class="_title">友情链接</h4>
                 <div id="" class="_single">
-                    <p><a href="" target="_blank">百度</a></p>
-                    <p><a href="" target="_blank">百度</a></p>
+                    <?php if (is_array($_linkData) || $_linkData instanceof \think\Collection || $_linkData instanceof \think\Paginator): if (count($_linkData) == 0) : echo ""; else: foreach ($_linkData as $key => $vo): ?>
+                        <p><a href="<?php echo htmlentities($vo['link_url']); ?>"
+                              target="_blank"><?php echo htmlentities($vo['link_name']); ?></a></p>
+                    <?php endforeach; endif; else: echo "";endif; ?>
                 </div>
             </div>
         </div>
@@ -175,11 +215,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <a href="">网站名称</a>
+                <a href=""><?php echo htmlentities($_webset['title']); ?></a>
                 |
-                <a href="">版权信息</a>
+                <a href=""><?php echo htmlentities($_webset['copyright']); ?></a>
                 |
-                <a href="">admin@163.com</a>
+                <a href=""><?php echo htmlentities($_webset['email']); ?></a>
             </div>
         </div>
     </div>
