@@ -27,7 +27,7 @@ class Lists extends Common
 
 //            获取文章数据
             $articleData = db('article')->alias('a')
-                ->join('__CATE__ c', 'a.cate_id=c.cate_id')->whereIn('a.cate_id', $cids)->select();
+                ->join('__CATE__ c', 'a.cate_id=c.cate_id')->where('a.isrecycle',2)->whereIn('a.cate_id', $cids)->select();
 
         }
 
@@ -41,7 +41,7 @@ class Lists extends Common
             //获取文章数据
             $articleData = db('article')->alias('a')
                 ->join('__ARC_TAG__ at', 'a.arc_id=at.arc_id')
-                ->join('__CATE__ c', 'a.cate_id=c.cate_id')->where('at.tag_id', $tag_id)->select();
+                ->join('__CATE__ c', 'a.cate_id=c.cate_id')->where('a.isrecycle',2)->where('at.tag_id', $tag_id)->select();
         }
         foreach ($articleData as $k => $v) {
             $articleData[$k]['tags'] = db('arc_tag')->alias('at')

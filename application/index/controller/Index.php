@@ -11,7 +11,7 @@ class Index extends Common
         $this->assign('headConf', $headConf);
 
         $articleData = db('article')->alias('a')
-            ->join('__CATE__ c', 'a.cate_id=c.cate_id')->order('sendtime desc')->select();
+            ->join('__CATE__ c', 'a.cate_id=c.cate_id')->where('a.isrecycle',2)->order('sendtime desc')->select();
 
         foreach ($articleData as $k => $v) {
             $articleData[$k]['tags'] = db('arc_tag')->alias('at')
