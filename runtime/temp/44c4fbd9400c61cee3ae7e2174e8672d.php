@@ -1,4 +1,4 @@
-<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\index\index.html";i:1519825679;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519825733;}*/ ?>
+<?php /*a:2:{s:68:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\index\index.html";i:1519991027;s:61:"G:\wamp64\www\HBlog4ThinkPHP\application/index/view\base.html";i:1519825733;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -113,9 +113,9 @@
     </div>
     <div class="_digest">
         <!--<img src="/static/index/images/1.jpg" class="img-responsive"/>-->
-        <!--<p>-->
-        <!--摘要-->
-        <!--</p>-->
+        <p>
+        <?php echo htmlentities($vo['arc_content']); ?>
+        </p>
     </div>
     <div class="_more">
         <a href="<?php echo url('index/content/index',['arc_id'=>$vo['arc_id']]); ?>" class="btn btn-default">阅读全文</a>
